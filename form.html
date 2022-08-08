@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="title">Enter Your details</div>
+    <div class="content">
+      <form action="#" name="myform" onsubmit="return validateForm()" method="post" >
+        <div class="user-details">
+          <div class="input-box" id="name" >
+            <div class="name">
+             <label for="Name">Name</label> 
+            <span class="details"></span>
+            <input type="text"  name ="fname" placeholder="Enter your name" >
+            
+          </div>
+        </div>
+          <div class="input-box" id="email">
+            <span class="details"></span>
+            
+          </div>
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input type="text" name="femail" placeholder="Enter your Email id" required>
+          </div>
+          <div class="input-box" id="phone">
+            <span class="details">Mobile Number</span>
+            <input type="text" name="fphone" placeholder="Enter your mobile number" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Date of birth</span>
+            <input type="date" placeholder="Enter your Date of birth" required>
+          </div>
+
+          <div class="input-box" >
+            <span class="details">Gender</span>
+           
+            <select style="border-bottom: 1px solid black;" name="Gender" id="Gender">
+              <option value="Select Gender">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="input-box">
+            <script src="cities.js"></script>
+            <span class="details">State</span>
+            
+
+            <select onchange="print_city('state', this.selectedIndex);" id="sts" name="stt" class="form-control"
+              required></select>
+            <select id="state" class="form-control" required></select>
+            <script language="javascript">print_state("sts");</script>
+
+          </div>
+
+          <div class="input-box" id="pincode">
+            <span class="details">Pincode</span>
+            <input type="text" name="pincode" placeholder="Enter pincode" required>
+          </div>
+         
+          </div>
+
+
+          <div class="button">
+            <input type="submit" value="Done">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+<script>
+function clearErrors(){
+
+errors = document.getElementsByClassName('details');
+for(let item of errors)
+{
+    item.innerHTML = "";
+}
+
+
+}
+function seterror(id, error){
+
+element = document.getElementById(id);
+element.getElementsByClassName('details')[0].innerHTML = error;
+
+}
+
+function validateForm(){
+var returnval = true;
+clearErrors();
+
+
+var name = document.forms['myForm']["fname"].value;
+
+
+if (name.length == 0){
+    seterror("name", "*Enter the name");
+    returnval = false;
+}
+
+var email = document.forms['myForm']["femail"].value;
+if (email.length==0){
+    seterror("email", "*Enter the Email");
+    returnval = false;
+}
+
+var phone = document.forms['myForm']["fphone"].value;
+if (phone.length != 10){
+    seterror("phone", "*Phone number should be of 10 digits!");
+    returnval = false;
+}
+
+
+
+return returnval;
+}
+
+
+</script>
+
+</html>
